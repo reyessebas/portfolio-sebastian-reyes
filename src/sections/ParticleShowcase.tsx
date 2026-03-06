@@ -4,9 +4,9 @@ import { Sparkles, Play } from 'lucide-react'
 import { ParticleTextEffect } from '@/components/ParticleTextEffect'
 
 const videos = [
-  { id: 1, src: '/videos/0205.mov', title: 'Concepto Visual', desc: 'Diseño y estructura' },
-  { id: 2, src: '/videos/0207.mp4', title: 'Poster hecho en Affinity', desc: 'Diseño gráfico profesional' },
-  { id: 3, src: '/videos/0209.mp4', title: 'Redes Sociales', desc: 'Con Figma mosaico y posts' },
+  { id: 1, src: 'https://www.youtube.com/embed/EjES3eZ7vXo', videoId: 'EjES3eZ7vXo', title: 'Concepto Visual', desc: 'Diseño y estructura' },
+  { id: 2, src: 'https://www.youtube.com/embed/QSxgzOa3ETI', videoId: 'QSxgzOa3ETI', title: 'Poster hecho en Affinity', desc: 'Diseño gráfico profesional' },
+  { id: 3, src: 'https://www.youtube.com/embed/--bFLquZVRo', videoId: '--bFLquZVRo', title: 'Redes Sociales', desc: 'Con Figma mosaico y posts' },
 ]
 
 export default function ParticleShowcase() {
@@ -96,15 +96,12 @@ export default function ParticleShowcase() {
                     transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
                     className="relative"
                   >
-                    <video
-                      src={activeVideo.src}
+                    <iframe
+                      src={`${activeVideo.src}?autoplay=1&mute=1&loop=1&controls=0&modestbranding=1&rel=0`}
                       key={activeVideo.src}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                      preload="none"
-                      className="w-full h-[20rem] sm:h-[26rem] md:h-[34rem] lg:h-[42rem] object-contain bg-black"
+                      allow="autoplay; encrypted-media"
+                      allowFullScreen
+                      className="w-full h-[20rem] sm:h-[26rem] md:h-[34rem] lg:h-[42rem] bg-black border-0"
                     />
                     
                     {/* Overlay Info */}
@@ -167,14 +164,11 @@ export default function ParticleShowcase() {
                       className={`group relative overflow-hidden rounded-xl border text-left bg-black shadow-lg transition-all duration-500 ${isActive ? 'border-amber-400/90 ring-2 ring-amber-400/40' : 'border-zinc-700/60 hover:border-zinc-600/80'}`}
                     >
                       <div className="relative overflow-hidden">
-                        <video
-                          src={video.src}
-                          autoPlay={isActive}
-                          muted
-                          loop
-                          playsInline
-                          preload={isActive ? 'metadata' : 'none'}
-                          className={`w-full h-24 sm:h-28 md:h-32 object-contain bg-black transition-all duration-500 ${isActive ? 'opacity-100' : 'opacity-60 group-hover:opacity-80'}`}
+                        <img
+                          src={`https://img.youtube.com/vi/${video.videoId}/maxresdefault.jpg`}
+                          alt={video.title}
+                          loading="lazy"
+                          className={`w-full h-24 sm:h-28 md:h-32 object-cover bg-black transition-all duration-500 ${isActive ? 'opacity-100' : 'opacity-60 group-hover:opacity-80'}`}
                         />
                         {isActive && (
                           <motion.div
