@@ -103,6 +103,7 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
             const normalizedAngle = Math.abs(relativeAngle > 180 ? 360 - relativeAngle : relativeAngle);
             const opacity = Math.max(0.3, 1 - (normalizedAngle / 180));
             const isVideo = item.photo.url.toLowerCase().endsWith('.mp4');
+            const isFront = normalizedAngle < 55;
 
             return (
               <div
@@ -126,16 +127,20 @@ const CircularGallery = React.forwardRef<HTMLDivElement, CircularGalleryProps>(
                       src={item.photo.url}
                       className="absolute inset-0 w-full h-full object-cover"
                       style={{ objectPosition: item.photo.pos || 'center' }}
-                      autoPlay
+                      poster="/hero_one.jpg"
+                      autoPlay={isFront}
                       muted
                       loop
                       playsInline
+                      preload={isFront ? 'metadata' : 'none'}
                       aria-label={item.photo.text}
                     />
                   ) : (
                     <img
                       src={item.photo.url}
                       alt={item.photo.text}
+                      loading="lazy"
+                      decoding="async"
                       className="absolute inset-0 w-full h-full object-cover"
                       style={{ objectPosition: item.photo.pos || 'center' }}
                     />

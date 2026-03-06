@@ -103,7 +103,7 @@ export default function ParticleShowcase() {
                       muted
                       loop
                       playsInline
-                      preload="metadata"
+                      preload="none"
                       className="w-full h-[20rem] sm:h-[26rem] md:h-[34rem] lg:h-[42rem] object-contain bg-black"
                     />
                     
@@ -169,11 +169,11 @@ export default function ParticleShowcase() {
                       <div className="relative overflow-hidden">
                         <video
                           src={video.src}
-                          autoPlay
+                          autoPlay={isActive}
                           muted
                           loop
                           playsInline
-                          preload="metadata"
+                          preload={isActive ? 'metadata' : 'none'}
                           className={`w-full h-24 sm:h-28 md:h-32 object-contain bg-black transition-all duration-500 ${isActive ? 'opacity-100' : 'opacity-60 group-hover:opacity-80'}`}
                         />
                         {isActive && (

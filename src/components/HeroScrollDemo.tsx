@@ -30,6 +30,8 @@ export function HeroScrollDemo() {
         <img
           src={randomImage}
           alt="hero"
+          loading="lazy"
+          decoding="async"
           className="mx-auto rounded-2xl object-cover h-full w-full object-left-top"
           draggable={false}
         />

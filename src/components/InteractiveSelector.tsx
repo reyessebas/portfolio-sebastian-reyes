@@ -121,13 +121,14 @@ const InteractiveSelector: React.FC = () => {
         {options.map((option, index) => {
           const isActive = activeIndex === index;
           const isVisible = animatedOptions.includes(index);
+          const shouldLoadImage = isActive || Math.abs(index - activeIndex) <= 1;
 
           return (
             <div
               key={option.title}
               className="relative flex flex-col justify-end transition-all duration-700 ease-in-out cursor-pointer"
               style={{
-                backgroundImage: `url('${option.image}')`,
+                backgroundImage: shouldLoadImage ? `url('${option.image}')` : 'none',
                 backgroundSize: isActive ? 'auto 100%' : 'auto 120%',
                 backgroundPosition: 'center',
                 opacity: isVisible ? 1 : 0,
